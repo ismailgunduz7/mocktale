@@ -1,0 +1,345 @@
+/*
+ * ChatGPT on a phone. The app sets no font of its own: it asks for the system font, so the mock
+ * does the same and looks like ChatGPT on whatever device draws it (SF Pro on Apple devices,
+ * Segoe UI on Windows, Roboto on Android).
+ */
+
+.shot.p-chatgpt {
+  --bg: #ffffff;
+  --fg: #0d0d0d;
+  --muted: #5d5d5d;
+  --ph: #8f8f8f;
+  --ububble: #f4f4f4;
+  --input: #ffffff;
+  --inshadow: 0 4px 4px rgba(0, 0, 0, 0.04), 0 0 1px rgba(0, 0, 0, 0.62);
+  --icode: #ececec;
+  --code-bg: #f9f9f9;
+  --code-line: #ececec;
+  --line: #e5e5e5;
+  --btn: #0d0d0d;
+  --btn-fg: #ffffff;
+  --sb-fg: #000000;
+  font-family: ui-sans-serif, -apple-system, system-ui, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  background: var(--bg);
+  color: var(--fg);
+}
+.shot.p-chatgpt.dark {
+  --bg: #212121;
+  --fg: #ececec;
+  --muted: #afafaf;
+  --ph: #a3a3a3;
+  --ububble: #303030;
+  --input: #303030;
+  --inshadow: 0 0 0 0.5px rgba(255, 255, 255, 0.06);
+  --icode: #424242;
+  --code-bg: #181818;
+  --code-line: #2f2f2f;
+  --line: #3f3f3f;
+  --btn: #ffffff;
+  --btn-fg: #0d0d0d;
+  --sb-fg: #ffffff;
+}
+
+/* Top bar */
+.shot.p-chatgpt .c-top {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 6px;
+}
+.shot.p-chatgpt .c-top .ib {
+  width: 44px;
+  height: 44px;
+}
+.shot.p-chatgpt .c-ttl {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  padding: 0 2px;
+  font-size: 18px;
+  line-height: 28px;
+  white-space: nowrap;
+}
+.shot.p-chatgpt .c-chev {
+  color: var(--muted);
+  padding-top: 2px;
+}
+.shot.p-chatgpt .c-sp {
+  flex: 1;
+}
+
+/* Conversation */
+.shot.p-chatgpt .c-thread {
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px 20px;
+}
+.shot.p-chatgpt .c-thread > * + * {
+  margin-top: 20px;
+}
+.shot.p-chatgpt .c-thread > .c-a + .c-u {
+  margin-top: 32px;
+}
+.shot.p-chatgpt .c-u {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.shot.p-chatgpt .c-ub {
+  max-width: 70%;
+  background: var(--ububble);
+  border-radius: 18px;
+  padding: 6px 16px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+.shot.p-chatgpt .c-ub[data-lines='multi'] {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.shot.p-chatgpt .c-imgs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.shot.p-chatgpt .c-u .c-imgs {
+  justify-content: flex-end;
+  max-width: 80%;
+}
+.shot.p-chatgpt .c-imgs img {
+  max-width: 220px;
+  max-height: 260px;
+  border-radius: 18px;
+  object-fit: cover;
+}
+.shot.p-chatgpt .c-a .c-imgs {
+  margin-top: 16px;
+}
+.shot.p-chatgpt .c-a .c-imgs img {
+  max-width: 100%;
+  max-height: 420px;
+  border-radius: 20px;
+}
+
+/* Answer text */
+.shot.p-chatgpt .md {
+  font-size: 16px;
+  line-height: 28px;
+  overflow-wrap: break-word;
+}
+.shot.p-chatgpt .md > * {
+  margin-bottom: 16px;
+}
+.shot.p-chatgpt .md > :last-child {
+  margin-bottom: 0;
+}
+.shot.p-chatgpt .md strong {
+  font-weight: 600;
+}
+.shot.p-chatgpt .md h1 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  margin: 28px 0 12px;
+}
+.shot.p-chatgpt .md h2 {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 600;
+  margin: 24px 0 10px;
+}
+.shot.p-chatgpt .md h3,
+.shot.p-chatgpt .md h4 {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 600;
+  margin: 20px 0 8px;
+}
+.shot.p-chatgpt .md > h1:first-child,
+.shot.p-chatgpt .md > h2:first-child,
+.shot.p-chatgpt .md > h3:first-child,
+.shot.p-chatgpt .md > h4:first-child {
+  margin-top: 0;
+}
+.shot.p-chatgpt .md ul,
+.shot.p-chatgpt .md ol {
+  padding-left: 26px;
+}
+.shot.p-chatgpt .md ul {
+  list-style: disc;
+}
+.shot.p-chatgpt .md ol {
+  list-style: decimal;
+}
+.shot.p-chatgpt .md li {
+  margin: 6px 0;
+  padding-left: 4px;
+}
+.shot.p-chatgpt .md li > p {
+  margin: 8px 0;
+}
+.shot.p-chatgpt .md li > ul,
+.shot.p-chatgpt .md li > ol {
+  margin: 6px 0;
+}
+.shot.p-chatgpt .md hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 28px 0;
+}
+.shot.p-chatgpt .md a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--muted);
+}
+.shot.p-chatgpt .md blockquote {
+  border-left: 3px solid var(--line);
+  padding-left: 14px;
+}
+.shot.p-chatgpt .md code {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  background: var(--icode);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+.shot.p-chatgpt .md .code {
+  border-radius: 16px;
+  background: var(--code-bg);
+  box-shadow: inset 0 0 0 1px var(--code-line);
+  overflow: hidden;
+}
+.shot.p-chatgpt .md .code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px 6px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--muted);
+}
+.shot.p-chatgpt .md .code-head .cp {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.shot.p-chatgpt .md .code pre {
+  padding: 4px 16px 16px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.shot.p-chatgpt .md .code code {
+  background: none;
+  padding: 0;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 22px;
+}
+.shot.p-chatgpt .md .table {
+  overflow: hidden;
+}
+.shot.p-chatgpt .md table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 22px;
+}
+.shot.p-chatgpt .md th,
+.shot.p-chatgpt .md td {
+  padding: 8px 12px 8px 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+.shot.p-chatgpt .md th {
+  font-weight: 600;
+}
+.shot.p-chatgpt .md tr:last-child td {
+  border-bottom: 0;
+}
+.shot.p-chatgpt .md .al-c {
+  text-align: center;
+}
+.shot.p-chatgpt .md .al-r {
+  text-align: right;
+}
+
+.shot.p-chatgpt .c-acts {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 10px 0 0 -8px;
+  color: var(--muted);
+}
+.shot.p-chatgpt .c-acts .ib {
+  width: 32px;
+  height: 32px;
+}
+
+/* Input box */
+.shot.p-chatgpt .c-comp {
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 6px 12px 12px;
+}
+.shot.p-chatgpt .c-in {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 54px;
+  padding: 0 8px 0 7px;
+  border-radius: 28px;
+  background: var(--input);
+  box-shadow: var(--inshadow);
+}
+.shot.p-chatgpt .c-in .ib {
+  width: 38px;
+  height: 38px;
+}
+.shot.p-chatgpt .c-ph {
+  flex: 1;
+  min-width: 0;
+  padding: 0 4px;
+  color: var(--ph);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.shot.p-chatgpt .c-in .c-voice {
+  width: 36px;
+  height: 36px;
+  margin-left: 4px;
+  border-radius: 50%;
+  background: var(--btn);
+  color: var(--btn-fg);
+}
+.shot.p-chatgpt .c-foot {
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--muted);
+  padding: 0 16px 10px;
+}
+.shot.p-chatgpt .c-safe.ios {
+  height: 20px;
+}
+.shot.p-chatgpt .c-safe.android {
+  height: 10px;
+}
+
+.shot.fixed.p-chatgpt .mt-top {
+  background: var(--bg);
+}
+.shot.fixed.p-chatgpt .mt-bottom {
+  background: linear-gradient(transparent, var(--bg) 24px);
+}

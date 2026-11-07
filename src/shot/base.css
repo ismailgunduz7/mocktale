@@ -1,0 +1,173 @@
+/*
+ * Shared ground rules of every mock. This file is read as a string: it styles the preview on the
+ * page and travels inside the exported SVG, so it may only use selectors under .shot and nothing
+ * that depends on the page around it.
+ *
+ * A mock is three stacked parts: .mt-top (status bar and header), .mt-body > .mt-scroll (the
+ * conversation) and .mt-bottom (the input bar). In a fixed frame (a phone screen, an Instagram
+ * post) the header and input bar float over the conversation as they do in the apps, and the
+ * conversation is moved by --offset to show the part the visitor picked.
+ */
+
+.shot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  font-synthesis-weight: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+.shot *,
+.shot *::before,
+.shot *::after {
+  box-sizing: border-box;
+}
+.shot svg {
+  display: block;
+  flex-shrink: 0;
+}
+.shot img {
+  display: block;
+}
+.shot p,
+.shot h1,
+.shot h2,
+.shot h3,
+.shot h4,
+.shot ul,
+.shot ol,
+.shot blockquote,
+.shot pre {
+  margin: 0;
+}
+.shot a {
+  color: inherit;
+}
+
+.shot .mt-top,
+.shot .mt-bottom {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+.shot .mt-body {
+  position: relative;
+  z-index: 1;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.shot .mt-scroll {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.shot.fixed .mt-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.shot.fixed .mt-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.shot.fixed .mt-body {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: block;
+}
+.shot.fixed .mt-scroll {
+  min-height: 100%;
+  padding-top: var(--top-h, 0px);
+  padding-bottom: var(--bottom-h, 0px);
+  transform: translateY(calc(var(--offset, 0px) * -1));
+}
+/* A short chat sits right above the input bar in apps that fill from the bottom. */
+.shot.fixed.anchor-bottom .mt-scroll > :first-child {
+  margin-top: auto;
+}
+
+/* Status bars */
+.shot .sb {
+  display: flex;
+  align-items: center;
+  color: var(--sb-fg, currentColor);
+}
+.shot .sb-ios {
+  height: 54px;
+  padding: 5px 0 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro', 'Inter', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 22px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+.shot .sb-ios .sb-time,
+.shot .sb-ios .sb-icons {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shot .sb-ios .sb-time {
+  padding-left: 6px;
+  font-variant-numeric: tabular-nums;
+}
+.shot .sb-ios .sb-island {
+  width: 125px;
+  flex-shrink: 0;
+}
+.shot .sb-ios .sb-icons {
+  gap: 5px;
+  padding-right: 4px;
+}
+.shot .sb-android {
+  height: 40px;
+  padding: 2px 20px 0 26px;
+  justify-content: space-between;
+  font-family: 'Google Sans Flex', 'Google Sans', Roboto, system-ui, sans-serif;
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+.shot .sb-android .sb-icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Common pieces */
+.shot .ib {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.shot .av {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.shot .av img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.shot .lnk {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}

@@ -1,0 +1,39 @@
+# A static site and nothing else: no functions, no forms, no storage. Everything a visitor types or
+# uploads stays in their browser tab, and the Content-Security-Policy below is what holds the page
+# to that. It may only talk to its own origin (to read its own font files for the PNG export), so
+# no script on it, ours or anyone's, can send a message or a photo somewhere else.
+#
+# The SPA fallback lives in public/_redirects, which Vite copies into dist. Keeping redirects out
+# of this file means there is exactly one place to look for them.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+  # Skip the build when a push only touches docs: the free plan counts every production deploy
+  # against its monthly credits. A build without cache has both refs equal, and a "Clear cache
+  # and deploy site" must still build, hence the guard in front.
+  ignore = "[ -n \"$CACHED_COMMIT_REF\" ] && [ \"$CACHED_COMMIT_REF\" != \"$COMMIT_REF\" ] && git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- src public index.html package.json package-lock.json vite.config.ts tsconfig.json netlify.toml"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# Vite fingerprints everything under /assets, fonts included, so those files never change under
+# the same name. Everything else, index.html included, is revalidated on every visit so a deploy
+# reaches returning visitors.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "no-referrer"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()"
+    # img-src needs data: and blob: for the photos a visitor picks and for the finished PNG;
+    # style-src needs 'unsafe-inline' for the mock styles injected at run time; font-src allows
+    # data: because the exported image carries its fonts inside itself.
+    Content-Security-Policy = "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'"

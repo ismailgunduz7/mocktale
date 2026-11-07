@@ -1,0 +1,407 @@
+/*
+ * Claude on a phone (claude.ai and the app). Anthropic's own typefaces are not open, so the
+ * stacks name them first and fall back to open look-alikes that ship with this site: Inter for
+ * the sans, Source Serif 4 for the serif Claude answers in. A licensed copy of the real fonts,
+ * added to src/fonts/registry.ts, takes over without changes here. The chat font setting mirrors
+ * Claude's own (Settings › Appearance › Chat font).
+ */
+
+.shot.p-claude {
+  --bg: #faf9f5;
+  --fg: #141413;
+  --fg2: #3d3d3a;
+  --muted: #73726c;
+  --ububble: #f0eee6;
+  --input: #ffffff;
+  --border: rgba(31, 30, 29, 0.15);
+  --line: rgba(31, 30, 29, 0.15);
+  --accent: #c6613f;
+  --brand: #d97757;
+  --code-bg: #f5f4ed;
+  --icode: #b4442c;
+  --sb-fg: #141413;
+  --sans: 'Anthropic Sans', 'Styrene B', 'Inter', system-ui, sans-serif;
+  --serif: 'Anthropic Serif', 'Tiempos Text', 'Source Serif 4', Georgia, serif;
+  --mono: 'Anthropic Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --user: var(--sans);
+  --resp: var(--serif);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 24px;
+  background: var(--bg);
+  color: var(--fg);
+}
+.shot.p-claude.dark {
+  --bg: #262624;
+  --fg: #faf9f5;
+  --fg2: #c2c0b6;
+  --muted: #9c9a92;
+  --ububble: #141413;
+  --input: #30302e;
+  --border: rgba(222, 220, 209, 0.15);
+  --line: rgba(222, 220, 209, 0.15);
+  --code-bg: #1f1e1d;
+  --icode: #f0937a;
+  --sb-fg: #ffffff;
+}
+.shot.p-claude .f-sans {
+  --resp: var(--sans);
+}
+.shot.p-claude .f-system {
+  --user: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --resp: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+.shot.p-claude .f-dyslexic {
+  --user: 'OpenDyslexic', var(--sans);
+  --resp: 'OpenDyslexic', var(--sans);
+}
+
+/* Top bar */
+.shot.p-claude .cl-top {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 8px;
+}
+.shot.p-claude .cl-top .ib {
+  width: 40px;
+  height: 40px;
+  color: var(--fg2);
+}
+.shot.p-claude .cl-ttl {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 4px;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+}
+.shot.p-claude .cl-ttl-t {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.shot.p-claude .cl-chev {
+  color: var(--muted);
+}
+
+/* Conversation */
+.shot.p-claude .cl-thread {
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px 20px;
+}
+.shot.p-claude .cl-thread > * + * {
+  margin-top: 20px;
+}
+.shot.p-claude .cl-thread > .cl-a + .cl-u {
+  margin-top: 28px;
+}
+.shot.p-claude .cl-u {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.shot.p-claude .cl-u.classic {
+  align-items: flex-start;
+}
+.shot.p-claude .cl-ub {
+  max-width: 85%;
+  background: var(--ububble);
+  border-radius: 16px;
+  padding: 10px 16px;
+  font-family: var(--user);
+  font-size: 16px;
+  line-height: 24px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+.shot.p-claude .cl-u.classic .cl-ub {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 100%;
+  border-radius: 12px;
+  padding: 10px 16px 10px 10px;
+}
+.shot.p-claude .cl-av {
+  width: 28px;
+  height: 28px;
+  background: var(--fg2);
+  color: var(--bg);
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 700;
+}
+.shot.p-claude .cl-u.classic .cl-ut {
+  min-width: 0;
+  padding-top: 2px;
+}
+.shot.p-claude .cl-imgs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.shot.p-claude .cl-u .cl-imgs {
+  justify-content: flex-end;
+  max-width: 85%;
+}
+.shot.p-claude .cl-u.classic .cl-imgs {
+  justify-content: flex-start;
+}
+.shot.p-claude .cl-imgs img {
+  max-width: 200px;
+  max-height: 240px;
+  border-radius: 12px;
+  border: 0.5px solid var(--border);
+  object-fit: cover;
+}
+.shot.p-claude .cl-a .cl-imgs {
+  margin-top: 14px;
+}
+.shot.p-claude .cl-a .cl-imgs img {
+  max-width: 100%;
+  max-height: 420px;
+}
+
+/* Answer text */
+.shot.p-claude .md {
+  font-family: var(--resp);
+  font-size: 16.5px;
+  line-height: 27px;
+  overflow-wrap: break-word;
+}
+.shot.p-claude .md > * {
+  margin-bottom: 14px;
+}
+.shot.p-claude .md > :last-child {
+  margin-bottom: 0;
+}
+.shot.p-claude .md strong {
+  font-weight: 600;
+}
+.shot.p-claude .md h1 {
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 600;
+  margin: 24px 0 10px;
+}
+.shot.p-claude .md h2 {
+  font-size: 19px;
+  line-height: 28px;
+  font-weight: 600;
+  margin: 22px 0 8px;
+}
+.shot.p-claude .md h3,
+.shot.p-claude .md h4 {
+  font-size: 17px;
+  line-height: 26px;
+  font-weight: 600;
+  margin: 18px 0 6px;
+}
+.shot.p-claude .md > h1:first-child,
+.shot.p-claude .md > h2:first-child,
+.shot.p-claude .md > h3:first-child,
+.shot.p-claude .md > h4:first-child {
+  margin-top: 0;
+}
+.shot.p-claude .md ul,
+.shot.p-claude .md ol {
+  padding-left: 26px;
+}
+.shot.p-claude .md ul {
+  list-style: disc;
+}
+.shot.p-claude .md ol {
+  list-style: decimal;
+}
+.shot.p-claude .md li {
+  margin: 6px 0;
+  padding-left: 4px;
+}
+.shot.p-claude .md li > p {
+  margin: 8px 0;
+}
+.shot.p-claude .md li > ul,
+.shot.p-claude .md li > ol {
+  margin: 6px 0;
+}
+.shot.p-claude .md hr {
+  border: 0;
+  border-top: 0.5px solid var(--line);
+  margin: 24px 0;
+}
+.shot.p-claude .md a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.shot.p-claude .md blockquote {
+  border-left: 3px solid var(--line);
+  padding-left: 14px;
+  color: var(--fg2);
+}
+.shot.p-claude .md code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  color: var(--icode);
+  background: var(--code-bg);
+  box-shadow: inset 0 0 0 0.5px var(--line);
+  padding: 1px 5px;
+  border-radius: 6px;
+}
+.shot.p-claude .md .code {
+  background: var(--code-bg);
+  box-shadow: inset 0 0 0 0.5px var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.shot.p-claude .md .code-head {
+  padding: 9px 14px 0;
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--muted);
+}
+.shot.p-claude .md .code pre {
+  padding: 10px 14px 14px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.shot.p-claude .md .code code {
+  color: var(--fg);
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: 13.5px;
+  line-height: 21px;
+}
+.shot.p-claude .md table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 21px;
+}
+.shot.p-claude .md th,
+.shot.p-claude .md td {
+  padding: 8px 10px 8px 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 0.5px solid var(--line);
+}
+.shot.p-claude .md th {
+  font-weight: 600;
+}
+.shot.p-claude .md .al-c {
+  text-align: center;
+}
+.shot.p-claude .md .al-r {
+  text-align: right;
+}
+
+.shot.p-claude .cl-after {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  min-height: 32px;
+}
+.shot.p-claude .cl-spark {
+  color: var(--brand);
+}
+.shot.p-claude .cl-acts {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+  margin-right: -6px;
+  color: var(--muted);
+}
+.shot.p-claude .cl-acts .ib {
+  width: 32px;
+  height: 32px;
+}
+
+/* Input box */
+.shot.p-claude .cl-comp {
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 6px 12px 12px;
+}
+.shot.p-claude .cl-in {
+  background: var(--input);
+  box-shadow: inset 0 0 0 0.5px var(--border), 0 4px 20px rgba(0, 0, 0, 0.035);
+  border-radius: 20px;
+  padding: 14px 12px 10px 16px;
+}
+.shot.p-claude .cl-ph {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.shot.p-claude .cl-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  margin-left: -4px;
+}
+.shot.p-claude .cl-tb {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 0.5px var(--border);
+  color: var(--fg2);
+}
+.shot.p-claude .cl-model {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--fg2);
+  white-space: nowrap;
+}
+.shot.p-claude .cl-send {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #ffffff;
+  opacity: 0.5;
+}
+.shot.p-claude .cl-foot {
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--muted);
+  padding: 0 16px 10px;
+}
+.shot.p-claude .cl-safe.ios {
+  height: 20px;
+}
+.shot.p-claude .cl-safe.android {
+  height: 10px;
+}
+
+.shot.fixed.p-claude .mt-top {
+  background: var(--bg);
+}
+.shot.fixed.p-claude .mt-bottom {
+  background: linear-gradient(transparent, var(--bg) 24px);
+}

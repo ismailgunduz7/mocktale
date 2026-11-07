@@ -1,0 +1,386 @@
+/*
+ * Gemini, as gemini.google.com draws itself on a phone. Sizes were measured from the mobile web
+ * app in CSS pixels (they come from the original single-file mock). Google Sans Flex is the
+ * only font: the app uses it, it is open, and it ships with this site.
+ */
+
+.shot.p-gemini {
+  --bg: #faf9f9;
+  --fg: #1f1f1f;
+  --strong: #000000;
+  --muted: #727070;
+  --icon2: #444746;
+  --ph: #747775;
+  --ububble: #f2f0f0;
+  --input: #ffffff;
+  --inshadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  --code: #f2f0f0;
+  --line: #e3e1e1;
+  --sb-fg: var(--strong);
+  font-family: 'Google Sans Flex', 'Google Sans Text', 'Google Sans', Roboto, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 17px;
+  line-height: 26px;
+}
+.shot.p-gemini.dark {
+  --bg: #131314;
+  --fg: #e3e3e3;
+  --strong: #ffffff;
+  --muted: #a2a2a2;
+  --icon2: #c4c7c5;
+  --ph: #a2a5a3;
+  --ububble: #2b2b2c;
+  --input: #1e1f20;
+  --inshadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+  --code: #2b2b2c;
+  --line: #3c3c3d;
+}
+
+/* Top bar */
+.shot.p-gemini .g-top {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0 12px 0 8px;
+  color: var(--strong);
+}
+.shot.p-gemini .g-top .ib {
+  width: 36px;
+  height: 48px;
+}
+.shot.p-gemini .g-top .ib.g-menu {
+  width: 48px;
+}
+.shot.p-gemini .g-ttl {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding-left: 12px;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+.shot.p-gemini .g-model {
+  color: var(--muted);
+  margin-left: 6px;
+}
+.shot.p-gemini .g-chev {
+  margin-left: 8.5px;
+  color: var(--icon2);
+}
+.shot.p-gemini .g-sp {
+  flex: 1;
+}
+.shot.p-gemini .g-av {
+  width: 32px;
+  height: 32px;
+  background: #7b61ff;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Conversation */
+.shot.p-gemini .g-thread {
+  width: 100%;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px 8px;
+}
+.shot.p-gemini .g-thread > * + * {
+  margin-top: 40px;
+}
+.shot.p-gemini .g-thread > .g-u + .g-a {
+  margin-top: 58px;
+}
+.shot.p-gemini .g-thread > .g-u + .g-u,
+.shot.p-gemini .g-thread > .g-a + .g-a {
+  margin-top: 24px;
+}
+.shot.p-gemini .g-u {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.shot.p-gemini .g-u .g-imgs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 85%;
+  margin-right: 8px;
+}
+.shot.p-gemini .g-u .g-imgs img {
+  max-width: 220px;
+  max-height: 220px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+.shot.p-gemini .g-b {
+  background: var(--ububble);
+  padding: 20px 28px;
+  border-radius: 40px;
+  max-width: 85%;
+  margin-right: 8px;
+  line-height: 24px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+.shot.p-gemini .g-a {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.shot.p-gemini .g-ic {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #4f8df5, #a46cf0);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+.shot.p-gemini .g-t {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.shot.p-gemini .g-t .g-imgs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.shot.p-gemini .g-t .g-imgs img {
+  max-width: 260px;
+  max-height: 260px;
+  border-radius: 20px;
+}
+
+/* Answer text */
+.shot.p-gemini .md > * {
+  margin: 0 0 16px;
+}
+.shot.p-gemini .md > :last-child {
+  margin-bottom: 0;
+}
+.shot.p-gemini .md h1,
+.shot.p-gemini .md h2 {
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 600;
+  margin: 28px 0 12px;
+}
+.shot.p-gemini .md h3,
+.shot.p-gemini .md h4 {
+  font-size: 19px;
+  line-height: 26px;
+  font-weight: 600;
+  margin: 24px 0 12px;
+}
+.shot.p-gemini .md > h1:first-child,
+.shot.p-gemini .md > h2:first-child,
+.shot.p-gemini .md > h3:first-child,
+.shot.p-gemini .md > h4:first-child {
+  margin-top: 0;
+}
+.shot.p-gemini .md strong {
+  font-weight: 600;
+}
+.shot.p-gemini .md hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 24px 0;
+}
+/* Lists: markers 4px in from the edge, text indented 44px. */
+.shot.p-gemini .md ol,
+.shot.p-gemini .md ul {
+  list-style: none;
+  padding: 0 0 0 44px;
+}
+.shot.p-gemini .md li {
+  position: relative;
+}
+.shot.p-gemini .md li + li {
+  margin-top: 16px;
+}
+.shot.p-gemini .md ol > li {
+  counter-increment: n;
+}
+.shot.p-gemini .md ol > li::before {
+  content: counter(n) '.';
+  position: absolute;
+  left: -40px;
+  top: 0;
+}
+.shot.p-gemini .md ul > li::before {
+  content: '';
+  position: absolute;
+  left: -38px;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.shot.p-gemini .md li ul > li::before {
+  left: -40px;
+  top: 9px;
+  width: 8.5px;
+  height: 8.5px;
+  background: none;
+  border: 1.5px solid currentColor;
+}
+.shot.p-gemini .md li > p {
+  margin: 16px 0 0;
+}
+.shot.p-gemini .md li > ul,
+.shot.p-gemini .md li > ol {
+  margin: 16px 0 0 -44px;
+}
+.shot.p-gemini .md code {
+  background: var(--code);
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-family: 'Google Sans Code', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 15px;
+}
+.shot.p-gemini .md .ent {
+  text-decoration: underline dotted var(--strong);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2.5px;
+}
+.shot.p-gemini .md a {
+  color: #0b57d0;
+  text-decoration: none;
+}
+.shot.p-gemini.dark .md a {
+  color: #a8c7fa;
+}
+.shot.p-gemini .md blockquote {
+  border-left: 3px solid var(--line);
+  padding-left: 16px;
+  color: var(--muted);
+}
+.shot.p-gemini .md .code {
+  background: var(--code);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.shot.p-gemini .md .code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px 0 20px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--muted);
+}
+.shot.p-gemini .md .code pre {
+  padding: 10px 20px 18px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.shot.p-gemini .md .code code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: 14px;
+  line-height: 22px;
+}
+.shot.p-gemini .md .table {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.shot.p-gemini .md table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 22px;
+}
+.shot.p-gemini .md th,
+.shot.p-gemini .md td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid var(--line);
+}
+.shot.p-gemini .md thead th {
+  border-top: 0;
+  font-weight: 600;
+}
+.shot.p-gemini .md .al-c {
+  text-align: center;
+}
+.shot.p-gemini .md .al-r {
+  text-align: right;
+}
+
+/* Input box */
+.shot.p-gemini .g-comp {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 16px 16px 12px;
+}
+.shot.p-gemini .g-comp.wf {
+  padding-bottom: 8px;
+}
+.shot.p-gemini .g-in {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 80px;
+  padding: 0 28px;
+  border-radius: 40px;
+  background: var(--input);
+  box-shadow: var(--inshadow);
+  color: var(--strong);
+}
+.shot.p-gemini .g-ph {
+  flex: 1;
+  min-width: 0;
+  color: var(--ph);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.shot.p-gemini .g-foot {
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--ph);
+  padding: 0 24px 12px;
+}
+.shot.p-gemini .g-safe.ios {
+  height: 22px;
+}
+.shot.p-gemini .g-safe.android {
+  height: 12px;
+}
+
+/* Fixed frame: the bar and the input box stay over the conversation, as in the app. */
+.shot.fixed.p-gemini .mt-top {
+  background: var(--bg);
+}
+.shot.fixed.p-gemini .mt-top:not(:empty)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 36px;
+  background: linear-gradient(var(--bg), transparent);
+}
+.shot.fixed.p-gemini .mt-bottom {
+  background: linear-gradient(transparent 16px, var(--bg) 44px);
+}
+.shot.fixed.p-gemini .g-thread {
+  padding-bottom: 16px;
+}

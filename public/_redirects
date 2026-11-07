@@ -1,0 +1,13 @@
+# Netlify redirects for the single-page app. Vite copies this file into dist. Build settings and
+# headers are in netlify.toml; redirects are defined only here. Rules are read top to bottom and
+# the first match wins. Neither rule is forced, so a file that really exists (a script, a font,
+# the favicon) is always served as is.
+
+# Build files carry a content hash in their names. A request for one that no longer exists, such
+# as an old tab asking for the previous deploy's chunk, must get a real 404 rather than
+# index.html, or the browser would try to run HTML as JavaScript.
+/assets/*    /404.html      404
+
+# SPA fallback. /gemini, /chatgpt, /whatsapp and the rest pick the platform in the app; they are
+# not files, so they are answered with index.html and a 200.
+/*           /index.html    200

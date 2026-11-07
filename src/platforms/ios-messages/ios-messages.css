@@ -1,0 +1,383 @@
+/*
+ * Messages on iPhone, for both iMessage (blue) and SMS/RCS (green). Two looks: iOS 26 with its
+ * floating glass controls, and the classic bar of iOS 18 and earlier. San Francisco cannot be
+ * served by a website, so the stack asks for the system font and falls back to Inter where the
+ * device has no SF; .nosf tightens Inter a little to sit closer to SF's widths.
+ */
+
+.shot.p-ios {
+  --bg: #ffffff;
+  --fg: #000000;
+  --muted: #8a8a8e;
+  --them: #e9e9eb;
+  --them-fg: #000000;
+  --me: #0a84ff;
+  --me-fg: #ffffff;
+  --glass: rgba(250, 250, 250, 0.84);
+  --glass-edge: 0 2px 10px rgba(0, 0, 0, 0.07), 0 0 0 0.5px rgba(0, 0, 0, 0.07), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  --bar: rgba(249, 249, 249, 0.94);
+  --hair: rgba(0, 0, 0, 0.3);
+  --tint: #007aff;
+  --ph: rgba(60, 60, 67, 0.3);
+  --field-line: #c7c7cc;
+  --plus-bg: #e9e9eb;
+  --plus-fg: #7c7c80;
+  --sb-fg: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro', 'Inter', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 22px;
+  background: var(--bg);
+  color: var(--fg);
+}
+.shot.p-ios.nosf {
+  letter-spacing: -0.15px;
+}
+.shot.p-ios.dark {
+  --bg: #000000;
+  --fg: #ffffff;
+  --muted: #8d8d93;
+  --them: #262628;
+  --them-fg: #ffffff;
+  --glass: rgba(44, 44, 46, 0.78);
+  --glass-edge: 0 2px 10px rgba(0, 0, 0, 0.35), 0 0 0 0.5px rgba(255, 255, 255, 0.1), inset 0 1px 0.5px rgba(255, 255, 255, 0.12);
+  --bar: rgba(22, 22, 22, 0.94);
+  --hair: rgba(255, 255, 255, 0.16);
+  --tint: #0a84ff;
+  --ph: rgba(235, 235, 245, 0.3);
+  --field-line: #3a3a3c;
+  --plus-bg: #2c2c2e;
+  --plus-fg: #98989d;
+  --sb-fg: #ffffff;
+}
+.shot.p-ios.sms {
+  --me: #34c759;
+}
+.shot.p-ios.sms.dark {
+  --me: #30d158;
+}
+
+/* Glass (iOS 26) */
+.shot.p-ios .im-glass {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass);
+  box-shadow: var(--glass-edge);
+  color: var(--fg);
+}
+
+/* Contact header, iOS 26 */
+.shot.p-ios .im-nav26 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 4px 16px 10px;
+}
+.shot.p-ios .im-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin-top: 4px;
+}
+.shot.p-ios .im-who {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  max-width: 62%;
+}
+.shot.p-ios .im-av {
+  background: linear-gradient(#a5abb9, #858994);
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+.shot.p-ios .im-who .im-av {
+  width: 52px;
+  height: 52px;
+  font-size: 22px;
+}
+.shot.p-ios .im-name {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  height: 28px;
+  margin-top: -4px;
+  padding: 0 11px 0 13px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+}
+.shot.p-ios .im-name-t {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.shot.p-ios .im-next {
+  color: var(--muted);
+}
+
+/* Contact header, iOS 18 */
+.shot.p-ios .mt-top.ios18 {
+  background: var(--bar);
+  box-shadow: inset 0 -0.5px 0 var(--hair);
+}
+.shot.p-ios .im-nav18 {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 74px;
+  padding: 0 14px 0 8px;
+  color: var(--tint);
+}
+.shot.p-ios .im-back18 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 44px;
+  margin-top: 6px;
+  font-size: 17px;
+}
+.shot.p-ios .im-unread {
+  font-variant-numeric: tabular-nums;
+}
+.shot.p-ios .im-who18 {
+  position: absolute;
+  left: 50%;
+  top: 2px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 60%;
+}
+.shot.p-ios .im-who18 .im-av {
+  width: 46px;
+  height: 46px;
+  font-size: 19px;
+}
+.shot.p-ios .im-name18 {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  max-width: 100%;
+  margin-top: 5px;
+  font-size: 11.5px;
+  line-height: 14px;
+  color: var(--fg);
+}
+.shot.p-ios .im-video18 {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  margin-top: 6px;
+}
+
+/* Conversation */
+.shot.p-ios .im-thread {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 16px 12px;
+}
+.shot.p-ios .im-stamp {
+  text-align: center;
+  font-size: 11.5px;
+  line-height: 14px;
+  color: var(--muted);
+  margin: 10px 0 6px;
+}
+.shot.p-ios .im-stamp:first-child {
+  margin-top: 4px;
+}
+.shot.p-ios .im-stamp b,
+.shot.p-ios .im-service {
+  font-weight: 600;
+}
+.shot.p-ios .im-service {
+  margin-bottom: 1px;
+}
+.shot.p-ios .im-row {
+  display: flex;
+  margin-top: 2px;
+}
+.shot.p-ios .im-row.g {
+  margin-top: 10px;
+}
+.shot.p-ios .im-stamp + .im-row {
+  margin-top: 0;
+}
+.shot.p-ios .im-row.me {
+  justify-content: flex-end;
+}
+.shot.p-ios .im-bubble {
+  position: relative;
+  max-width: 75%;
+  padding: 7px 12px 7px;
+  border-radius: 18px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+.shot.p-ios .me .im-bubble {
+  background: var(--me);
+  color: var(--me-fg);
+}
+.shot.p-ios .them .im-bubble {
+  background: var(--them);
+  color: var(--them-fg);
+}
+.shot.p-ios .im-tail {
+  position: absolute;
+  bottom: 0;
+  pointer-events: none;
+}
+.shot.p-ios .me .im-tail {
+  right: -6px;
+  color: var(--me);
+}
+.shot.p-ios .them .im-tail {
+  left: -6px;
+  color: var(--them);
+  transform: scaleX(-1);
+}
+.shot.p-ios .im-row.jumbo .im-bubble {
+  background: none;
+  padding: 0 2px;
+  font-size: 48px;
+  line-height: 58px;
+}
+.shot.p-ios .im-img {
+  max-width: 70%;
+  max-height: 320px;
+  border-radius: 18px;
+  object-fit: cover;
+}
+.shot.p-ios .im-receipt {
+  align-self: flex-end;
+  margin: 3px 3px 0 0;
+  font-size: 11.5px;
+  line-height: 14px;
+  color: var(--muted);
+}
+.shot.p-ios .im-receipt b {
+  font-weight: 600;
+}
+.shot.p-ios .im-typing {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+  padding: 0 13px;
+  border-radius: 18px;
+  background: var(--them);
+}
+.shot.p-ios .im-typing span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.shot.p-ios .im-typing span:nth-child(2) {
+  opacity: 0.7;
+}
+.shot.p-ios .im-typing span:nth-child(3) {
+  opacity: 0.45;
+}
+.shot.p-ios .im-typing::before,
+.shot.p-ios .im-typing::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: var(--them);
+}
+.shot.p-ios .im-typing::before {
+  width: 12px;
+  height: 12px;
+  left: -2px;
+  bottom: -2px;
+}
+.shot.p-ios .im-typing::after {
+  width: 6px;
+  height: 6px;
+  left: -7px;
+  bottom: -7px;
+}
+
+/* Input bar */
+.shot.p-ios .im-comp26 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px 8px;
+}
+.shot.p-ios .im-plus {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.shot.p-ios .im-field {
+  flex: 1;
+  min-width: 0;
+  height: 40px;
+  justify-content: space-between;
+  padding: 0 14px 0 16px;
+  border-radius: 20px;
+}
+.shot.p-ios .im-ph {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ph);
+}
+.shot.p-ios .im-mic {
+  color: var(--muted);
+}
+.shot.p-ios .im-comp18 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px 8px;
+}
+.shot.p-ios .im-plus18 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--plus-bg);
+  color: var(--plus-fg);
+}
+.shot.p-ios .im-field18 {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  padding: 0 12px 0 14px;
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 1px var(--field-line);
+}
+.shot.p-ios .im-safe {
+  height: 24px;
+}
+
+/* Fixed frame */
+.shot.fixed.p-ios .mt-top.ios26 {
+  background: linear-gradient(var(--bg) 62%, transparent);
+}
+.shot.fixed.p-ios .mt-bottom.ios26 {
+  background: linear-gradient(transparent, var(--bg) 40%);
+}
+.shot.fixed.p-ios .mt-bottom.ios18 {
+  background: var(--bg);
+}

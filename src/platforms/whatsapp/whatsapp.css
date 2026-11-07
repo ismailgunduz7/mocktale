@@ -1,0 +1,445 @@
+/*
+ * WhatsApp, on iPhone or Android. The iPhone look uses the system font (San Francisco, Inter
+ * where there is none) and puts bubble tails at the bottom of a run; Android uses Roboto and puts
+ * them at the top. WhatsApp's doodle wallpaper is the company's artwork, so the default here is
+ * its plain colour; a photo of the visitor's own can replace it.
+ */
+
+.shot.p-wa {
+  --wall: #efeae2;
+  --bar: #f6f6f6;
+  --hair: rgba(0, 0, 0, 0.16);
+  --fg: #111b21;
+  --sub: #667781;
+  --in: #ffffff;
+  --out: #d9fdd3;
+  --meta: #667781;
+  --meta-out: #667781;
+  --read: #53bdeb;
+  --chip: #ffffff;
+  --chip-fg: #54656f;
+  --e2e: #fff5c4;
+  --e2e-fg: #54656f;
+  --link: #027eb5;
+  --field: #ffffff;
+  --field-line: rgba(0, 0, 0, 0.12);
+  --ghost-bg: #dfe5e7;
+  --ghost-fg: #ffffff;
+  --shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+  --sb-fg: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro', 'Inter', system-ui, sans-serif;
+  font-size: 16.5px;
+  line-height: 21px;
+  background: var(--wall);
+  color: var(--fg);
+}
+.shot.p-wa.nosf {
+  letter-spacing: -0.15px;
+}
+.shot.p-wa.dark {
+  --wall: #0b141a;
+  --bar: #161717;
+  --hair: rgba(255, 255, 255, 0.12);
+  --fg: #e9edef;
+  --sub: #8696a0;
+  --in: #202c33;
+  --out: #005c4b;
+  --meta: #8696a0;
+  --meta-out: rgba(233, 237, 239, 0.6);
+  --chip: #182229;
+  --chip-fg: #8696a0;
+  --e2e: #182229;
+  --e2e-fg: #ffd279;
+  --link: #53bdeb;
+  --field: #2c2c2e;
+  --field-line: transparent;
+  --ghost-bg: #6a7175;
+  --ghost-fg: #cfd4d6;
+  --shadow: 0 1px 0.5px rgba(0, 0, 0, 0.3);
+  --sb-fg: #ffffff;
+}
+.shot.p-wa.d-android {
+  --bar: #ffffff;
+  --field: #ffffff;
+  font-family: Roboto, 'Google Sans Flex', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: 0;
+}
+.shot.p-wa.d-android.dark {
+  --bar: #0b141a;
+  --field: #1f2c34;
+}
+
+/* Header */
+.shot.p-wa .mt-top {
+  background: var(--bar);
+  box-shadow: inset 0 -0.5px 0 var(--hair);
+}
+.shot.p-wa .wa-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 50px;
+  padding: 0 16px 0 6px;
+  color: var(--fg);
+}
+.shot.p-wa .wa-back {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 4px;
+  font-size: 17px;
+}
+.shot.p-wa .wa-unread {
+  font-variant-numeric: tabular-nums;
+}
+.shot.p-wa .wa-av {
+  width: 36px;
+  height: 36px;
+  background: var(--ghost-bg);
+  color: var(--ghost-fg);
+}
+.shot.p-wa .wa-ghost svg {
+  width: 32px;
+  height: 32px;
+  margin-top: 9px;
+}
+.shot.p-wa .wa-id {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2px;
+}
+.shot.p-wa .wa-name {
+  font-size: 16.5px;
+  line-height: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.shot.p-wa .wa-sub {
+  font-size: 12.5px;
+  line-height: 16px;
+  color: var(--sub);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.shot.p-wa .wa-acts {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.shot.p-wa.d-android .wa-nav {
+  height: 58px;
+  gap: 2px;
+  padding: 0 4px;
+}
+.shot.p-wa.d-android .wa-back {
+  padding: 0 0 0 8px;
+}
+.shot.p-wa.d-android .wa-av {
+  width: 40px;
+  height: 40px;
+}
+.shot.p-wa.d-android .wa-id {
+  padding-left: 10px;
+}
+.shot.p-wa.d-android .wa-name {
+  font-size: 17px;
+  line-height: 22px;
+  font-weight: 500;
+}
+.shot.p-wa.d-android .wa-sub {
+  font-size: 13px;
+}
+.shot.p-wa.d-android .wa-acts {
+  gap: 0;
+}
+.shot.p-wa.d-android .wa-acts .ib {
+  width: 44px;
+  height: 44px;
+}
+
+/* Wallpaper: behind the whole mock, so it also shows under the Android input bar. */
+.shot.p-wa:not(.fixed) .mt-body {
+  position: static;
+}
+.shot.p-wa .wa-wall {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+}
+.shot.p-wa .mt-scroll {
+  position: relative;
+  z-index: 1;
+}
+
+/* Conversation */
+.shot.p-wa .wa-thread {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 14px 10px;
+}
+.shot.p-wa.d-android .wa-thread {
+  padding: 8px 12px 8px;
+}
+.shot.p-wa .wa-day {
+  align-self: center;
+  margin: 8px 0 6px;
+  padding: 5px 12px 6px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  line-height: 16px;
+  font-weight: 500;
+  background: var(--chip);
+  color: var(--chip-fg);
+  box-shadow: var(--shadow);
+}
+.shot.p-wa .wa-e2e {
+  align-self: center;
+  max-width: 88%;
+  margin: 6px 0 8px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 12.5px;
+  line-height: 17px;
+  background: var(--e2e);
+  color: var(--e2e-fg);
+  box-shadow: var(--shadow);
+}
+.shot.p-wa .wa-lock {
+  display: inline-block;
+  vertical-align: -1px;
+  margin-right: 2px;
+}
+.shot.p-wa .wa-lock svg {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+}
+.shot.p-wa .wa-more {
+  color: var(--link);
+}
+.shot.p-wa .wa-row {
+  display: flex;
+  margin-top: 2px;
+}
+.shot.p-wa .wa-row.g {
+  margin-top: 8px;
+}
+.shot.p-wa .wa-day + .wa-row,
+.shot.p-wa .wa-e2e + .wa-row {
+  margin-top: 0;
+}
+.shot.p-wa .wa-row.me {
+  justify-content: flex-end;
+}
+.shot.p-wa .wa-b {
+  position: relative;
+  max-width: 80%;
+  padding: 6px 8px 7px 9px;
+  border-radius: 14px;
+  background: var(--in);
+  box-shadow: var(--shadow);
+}
+.shot.p-wa .me .wa-b {
+  background: var(--out);
+}
+.shot.p-wa.d-android .wa-b {
+  border-radius: 8px;
+}
+.shot.p-wa.d-android .me .wa-b.tail {
+  border-top-right-radius: 0;
+}
+.shot.p-wa.d-android .them .wa-b.tail {
+  border-top-left-radius: 0;
+}
+.shot.p-wa .wa-text {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+.shot.p-wa .wa-text b {
+  font-weight: 600;
+}
+.shot.p-wa .wa-text .mono,
+.shot.p-wa .wa-text .icode {
+  font-family: ui-monospace, 'SF Mono', Menlo, 'Roboto Mono', monospace;
+  font-size: 0.9em;
+}
+.shot.p-wa .wa-text .icode {
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: rgba(11, 20, 26, 0.06);
+}
+.shot.p-wa.dark .wa-text .icode {
+  background: rgba(255, 255, 255, 0.08);
+}
+.shot.p-wa .wa-text .lnk {
+  color: var(--link);
+  text-decoration: none;
+}
+.shot.p-wa .wa-meta {
+  position: absolute;
+  right: 8px;
+  bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  line-height: 15px;
+  color: var(--meta);
+  white-space: nowrap;
+}
+.shot.p-wa .me .wa-meta {
+  color: var(--meta-out);
+}
+.shot.p-wa .wa-meta.ghost {
+  position: static;
+  display: inline-flex;
+  visibility: hidden;
+  margin-left: 10px;
+  vertical-align: baseline;
+}
+.shot.p-wa .wa-tick {
+  display: flex;
+}
+.shot.p-wa .wa-tick.read {
+  color: var(--read);
+}
+.shot.p-wa .wa-b.media {
+  width: min(78%, 300px);
+  padding: 3px;
+}
+.shot.p-wa .wa-img + .wa-img {
+  margin-top: 3px;
+}
+.shot.p-wa .wa-img img {
+  width: 100%;
+  max-height: 360px;
+  border-radius: 11px;
+  object-fit: cover;
+}
+.shot.p-wa.d-android .wa-img img {
+  border-radius: 6px;
+}
+.shot.p-wa .wa-b.media .wa-text {
+  padding: 5px 6px 3px 6px;
+}
+.shot.p-wa .wa-meta.over {
+  right: 10px;
+  bottom: 8px;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+.shot.p-wa .wa-tail {
+  position: absolute;
+  color: var(--in);
+  filter: drop-shadow(0 1px 0.5px rgba(11, 20, 26, 0.13));
+}
+.shot.p-wa .me .wa-tail {
+  color: var(--out);
+}
+.shot.p-wa .wa-tail.bottom {
+  bottom: 0;
+}
+.shot.p-wa .me .wa-tail.bottom {
+  right: -6px;
+}
+.shot.p-wa .them .wa-tail.bottom {
+  left: -6px;
+  transform: scaleX(-1);
+}
+.shot.p-wa .wa-tail.top {
+  top: 0;
+}
+.shot.p-wa .me .wa-tail.top {
+  right: -8px;
+}
+.shot.p-wa .them .wa-tail.top {
+  left: -8px;
+  transform: scaleX(-1);
+}
+
+/* Input bar */
+.shot.p-wa .wa-comp.ios {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 6px 16px 6px 12px;
+  background: var(--bar);
+  box-shadow: inset 0 0.5px 0 var(--hair);
+  color: var(--fg);
+}
+.shot.p-wa .wa-field {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 34px;
+  padding: 0 8px 0 12px;
+  border-radius: 17px;
+  background: var(--field);
+  box-shadow: inset 0 0 0 0.5px var(--field-line);
+  color: var(--sub);
+}
+.shot.p-wa .wa-safe {
+  height: 24px;
+  background: var(--bar);
+}
+.shot.p-wa .wa-comp.android {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  padding: 4px 6px 8px;
+}
+.shot.p-wa .wa-pill {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 6px 0 4px;
+  border-radius: 24px;
+  background: var(--field);
+  box-shadow: var(--shadow);
+  color: var(--sub);
+}
+.shot.p-wa .wa-pill .ib {
+  width: 40px;
+  height: 40px;
+}
+.shot.p-wa .wa-pill .wa-ph {
+  flex: 1;
+  min-width: 0;
+  padding-left: 4px;
+  font-size: 17px;
+  color: var(--sub);
+}
+.shot.p-wa .wa-clip svg {
+  transform: rotate(45deg);
+}
+.shot.p-wa .wa-fab {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #1daa61;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(11, 20, 26, 0.2);
+}
+.shot.p-wa.dark .wa-fab {
+  background: #21c063;
+  color: #0b141a;
+}
+.shot.p-wa.d-android .wa-safe {
+  height: 10px;
+  background: none;
+}
